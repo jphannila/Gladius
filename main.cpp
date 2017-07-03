@@ -9,24 +9,26 @@ using namespace std;
 // Declaring functions
 int DiceRoller(int);
 int AttributeValue();
-void CharactersAttributes();
+void AllAttributes();
 
 int main(int nNumberofArgs, char* pszArgs[]){
+
+    cout << "The dice results were the following:" << endl;
 
     // Initialize pseudo-random seed
     srand(time(NULL));
 
-    CharactersAttributes();
+    AllAttributes();
 
     // wait until user is ready before terminating program
     // to allow the user to see the program results
-    cout << "Press ENTER to continue..." << endl;
+    cout << "\nPress ENTER to continue..." << endl;
     cin.ignore(10, '\n');
     cin.get();
     return 0;
 }
 
-// Roll a die with specified amount of sides when called
+// Roll a die with 'nSides' amount of sides when called
 int DiceRoller(int nSides){
     int nRollResult = rand() % nSides + 1;
     return nRollResult;
@@ -41,7 +43,7 @@ int AttributeValue(){
     int nRolls = 4;
     int nLowestRoll = nDiceSides;
 
-    // Declare array for dice roll results
+    // Declare array for storing DiceRoller() results
     int nRollResult[nRolls];
 
     // Performs 'nRolls' and stores the results into nRollResult
@@ -49,13 +51,14 @@ int AttributeValue(){
         nRollResult[nTimesRolled] = DiceRoller(nDiceSides);
     }
 
-    // Search the nRollResult array for the lowest roll result
+    // Find the lowest roll result, value is always at least 'nDiceSides'
     for(int i = 0; i < nRolls; i++){
         if(nRollResult[i] < nLowestRoll){
             nLowestRoll = nRollResult[i];
         }
     }
 
+    // Calculate the sum of the rolls and subtract the lowest roll
     nRollSum = nRollResult[0] + nRollResult[1] + nRollResult[2] + nRollResult[3] - nLowestRoll;
 
     // Debug print roll results
@@ -67,8 +70,8 @@ int AttributeValue(){
 }
 
 // Prints the characters basic abilities
-void CharactersAttributes(){
-    int nStrength, nDexterity, nConstitution, nVigilance, nWillpower, nCharisma, nPointTotal, nAverage;
+void AllAttributes(){
+    int nStrength, nDexterity, nConstitution, nVigilance, nWillpower, nCharisma, nPointTotal;
 
     nStrength = AttributeValue();
     nDexterity = AttributeValue();
@@ -77,11 +80,9 @@ void CharactersAttributes(){
     nWillpower = AttributeValue();
     nCharisma = AttributeValue();
     nPointTotal = nStrength + nDexterity + nConstitution + nVigilance + nWillpower + nCharisma;
-    nAverage = nPointTotal / 6;
 
     cout
-    <<  "Character has a total of " << nPointTotal << " points." << '\n'
-    <<  "With an average of " << nAverage << " per attribute." << '\n' << '\n'
+    <<  "\nCharacter has a total of " << nPointTotal << " points." << '\n'
     <<  "Strength:     " << nStrength << '\n'
     <<  "Dexterity:    " << nDexterity << '\n'
     <<  "Constitution: " << nConstitution << '\n'
