@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1497643140 source:c:\work\cpp_programs_from_book\branchdemo\playground\main.cpp
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<random>
+	<iterator>
+	<iostream>
+
+1497645680 source:c:\work\coding\playground\main.cpp
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<random>
+	<iterator>
+	<iostream>
+
