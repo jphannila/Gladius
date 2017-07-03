@@ -7,7 +7,7 @@
 using namespace std;
 
 // Declaring functions
-int DiceRoller(int&, int);
+int DiceRoller(int);
 int AttributeValue();
 void CharactersAttributes();
 
@@ -24,6 +24,43 @@ int main(int nNumberofArgs, char* pszArgs[]){
     cin.ignore(10, '\n');
     cin.get();
     return 0;
+}
+
+// Roll a die with specified amount of sides when called
+int DiceRoller(int nSides){
+    int nRollResult = rand() % nSides + 1;
+    return nRollResult;
+}
+
+// Returns the sum of the three highest rolls of four d6 rolls
+int AttributeValue(){
+    // Declare array for dice rolls
+    int nRollResult[4];
+
+    // Declare variables nRollSum and nRolls
+    // nRollSum is the sum of dice rolls to be returned
+    // nRolls specifies the amount of wanted rolls
+    int nRollSum, nRolls = 4, nLowestRoll = nRollResult[0];
+
+    // Performs 'nRolls' and stores the results into nRollResult
+    for(int nTimesRolled = 0; nTimesRolled < nRolls; nTimesRolled++){
+        nRollResult[nTimesRolled] = DiceRoller(6);
+    }
+
+    for(int i = 0; i < 4; i++){
+        if(nRollResult[i] < nLowestRoll){
+            nLowestRoll = nRollResult[i];
+        }
+    }
+
+    nRollSum = nRollResult[0] + nRollResult[1] + nRollResult[2] + nRollResult[3] - nLowestRoll;
+
+    // Debug print roll results
+    cout << nRollResult[0] << ", "
+         << nRollResult[1] << ", "
+         << nRollResult[2] << ", "
+         << nRollResult[3] << endl;
+    return nRollSum;
 }
 
 // Prints the characters basic abilities
@@ -50,28 +87,4 @@ void CharactersAttributes(){
     <<  "Charisma:     " << nCharisma << endl;
 
     return;
-}
-
-// Roll a die with specified amount of sides when called
-int DiceRoller(int& nRollResult,int nSides){
-    nRollResult = rand() % nSides + 1;
-    return nRollResult;
-}
-
-// AttributeValue returns the sum of three highest rolls of 4D6 dice rolls
-int AttributeValue(){
-
-    // Declare variables
-    int nAttributeValue, nNumberRolled, nDieSize, nRolls;
-    nDieSize = 6;
-    nRolls = 3;
-    nAttributeValue = 0;
-
-    // Performs 'nRolls' and sums the results into nAttributeValue
-    for(int nTimesRolled = 0; nTimesRolled < nRolls; nTimesRolled++){
-        DiceRoller(nNumberRolled, nDieSize);
-        nAttributeValue += nNumberRolled;
-    }
-
-    return nAttributeValue;
 }
