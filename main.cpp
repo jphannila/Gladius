@@ -34,20 +34,23 @@ int DiceRoller(int nSides){
 
 // Returns the sum of the three highest rolls of four d6 rolls
 int AttributeValue(){
-    // Declare array for dice rolls
-    int nRollResult[4];
 
-    // Declare variables nRollSum and nRolls
-    // nRollSum is the sum of dice rolls to be returned
-    // nRolls specifies the amount of wanted rolls
-    int nRollSum, nRolls = 4, nLowestRoll = nRollResult[0];
+    // Declare variables
+    int nRollSum;
+    int nDiceSides = 6;
+    int nRolls = 4;
+    int nLowestRoll = nDiceSides;
+
+    // Declare array for dice roll results
+    int nRollResult[nRolls];
 
     // Performs 'nRolls' and stores the results into nRollResult
     for(int nTimesRolled = 0; nTimesRolled < nRolls; nTimesRolled++){
-        nRollResult[nTimesRolled] = DiceRoller(6);
+        nRollResult[nTimesRolled] = DiceRoller(nDiceSides);
     }
 
-    for(int i = 0; i < 4; i++){
+    // Search the nRollResult array for the lowest roll result
+    for(int i = 0; i < nRolls; i++){
         if(nRollResult[i] < nLowestRoll){
             nLowestRoll = nRollResult[i];
         }
