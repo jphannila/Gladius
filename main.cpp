@@ -13,7 +13,7 @@ void AllAttributes();
 
 int main(int nNumberofArgs, char* pszArgs[]){
 
-    cout << "The dice results were the following:" << endl;
+    cout << "The rolled dice results were:" << endl;
 
     // Initialize pseudo-random seed
     srand(time(NULL));
@@ -82,7 +82,7 @@ void AllAttributes(){
     nPointTotal = nStrength + nDexterity + nConstitution + nVigilance + nWillpower + nCharisma;
 
     cout
-    <<  "\nCharacter has a total of " << nPointTotal << " points." << '\n'
+    <<  "\nThe character has a total of " << nPointTotal << " attribute points." << '\n'
     <<  "Strength:     " << nStrength << '\n'
     <<  "Dexterity:    " << nDexterity << '\n'
     <<  "Constitution: " << nConstitution << '\n'
